@@ -55,7 +55,7 @@
 
             <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number">3+</span>
+                    <span class="stat-number">4+</span>
                     <span class="stat-label">Core Open Source Projects</span>
                 </div>
                 <div class="stat-divider"></div>
@@ -89,6 +89,7 @@
     <span class="py-var">github</span> = <span class="py-str">"github.com/{{ github_username }}"</span>
     
     <span class="py-var">featured_repositories</span> = [
+        <span class="py-str">"myportfolio"</span>,
         <span class="py-str">"javascript-counter-app"</span>,
         <span class="py-str">"Quiz-App"</span>,
         <span class="py-str">"Staff-Management-SQL"</span>
@@ -243,10 +244,11 @@
 
         <!-- Filter Navigation -->
         <div class="filter-controls">
-            <button class="filter-btn active" data-filter="all">All Projects (3)</button>
+            <button class="filter-btn active" data-filter="all">All Projects ({{ projects.count|default:"4" }})</button>
             <button class="filter-btn" data-filter="web">Web & JS</button>
             <button class="filter-btn" data-filter="database">Database & SQL</button>
         </div>
+
 
         <div class="projects-grid">
             {% for project in projects %}

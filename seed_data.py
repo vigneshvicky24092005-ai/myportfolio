@@ -23,16 +23,24 @@ def seed():
     )
     print("[OK] SiteProfile created.")
 
-    # 2. Projects (Exclusively the 3 GitHub Repositories specified by the user)
+    # 2. Projects
     Project.objects.all().delete()
     projects_data = [
+        (
+            "Full-Stack Django Portfolio Web App",
+            "web",
+            "A modern and responsive personal portfolio web application engineered with Python, Django, custom dark glassmorphic CSS, database admin management, and automated email inquiry forwarding.",
+            "Python, Django, SQLite, JavaScript, HTML5, CSS3, Email Integration",
+            "https://github.com/vigneshvicky24092005-ai/myportfolio",
+            1
+        ),
         (
             "JavaScript Counter App",
             "web",
             "A modern and interactive JavaScript counter web application built with vanilla JS, featuring responsive controls, increment/decrement step customization, persistent state, and clean glassmorphism UI.",
             "JavaScript, HTML5, CSS3, DOM Manipulation, LocalStorage",
             "https://github.com/vigneshvicky24092005-ai/javascript-counter-app",
-            1
+            2
         ),
         (
             "Interactive Quiz Web Application",
@@ -40,7 +48,7 @@ def seed():
             "A dynamic quiz platform designed with timed challenges, category-based questions, automated score calculations, instant feedback, and responsive layout across all device viewports.",
             "JavaScript, CSS3, HTML5, JSON Data, Interactive UI",
             "https://github.com/vigneshvicky24092005-ai/Quiz-App",
-            2
+            3
         ),
         (
             "Staff Management SQL Database System",
@@ -48,7 +56,7 @@ def seed():
             "A comprehensive enterprise relational database management system designed to track employee records, department structures, payroll calculation, attendance logs, and complex analytical SQL queries.",
             "SQL, Relational DB, Python, CRUD Architecture, Database Schema",
             "https://github.com/vigneshvicky24092005-ai/Staff-Management-SQL",
-            3
+            4
         ),
     ]
 

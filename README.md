@@ -6,9 +6,11 @@ Modern, responsive full-stack portfolio built with **Django**, **Python**, **Jav
 
 ## 🌟 Featured Projects
 
+* 🌐 **[Full-Stack Django Portfolio Web App](https://github.com/vigneshvicky24092005-ai/myportfolio)** - Modern, responsive personal portfolio web application with custom dark glassmorphic UI, dynamic project management, and automated email inquiry forwarding.
 * 🔢 **[JavaScript Counter App](https://github.com/vigneshvicky24092005-ai/javascript-counter-app)** - Modern interactive counter with step customization, state manipulation, and responsive UI.
 * 🧠 **[Interactive Quiz Application](https://github.com/vigneshvicky24092005-ai/Quiz-App)** - Dynamic quiz platform with category selection, countdown timer, and instant scoring.
 * 📊 **[Staff Management SQL System](https://github.com/vigneshvicky24092005-ai/Staff-Management-SQL)** - Relational enterprise staff database system with schema optimization and analytics.
+
 
 ---
 
