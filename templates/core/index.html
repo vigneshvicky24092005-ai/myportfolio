@@ -1,0 +1,585 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Flash Messages Notification -->
+{% if messages %}
+<div class="container toast-container">
+    {% for message in messages %}
+    <div class="toast-alert toast-{{ message.tags }}">
+        <div class="toast-icon">
+            <i class="fas {% if message.tags == 'success' %}fa-circle-check{% else %}fa-circle-exclamation{% endif %}"></i>
+        </div>
+        <div class="toast-content">
+            <p class="toast-title">{% if message.tags == 'success' %}Success{% else %}Notice{% endif %}</p>
+            <p class="toast-message">{{ message }}</p>
+        </div>
+        <button class="toast-close" onclick="this.parentElement.remove();">&times;</button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Hero Section -->
+<section class="hero section" id="home">
+    <div class="container hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-indicator"></span>
+                <span>Available for Full-Stack & Engineering Roles</span>
+            </div>
+            
+            <h1 class="hero-title">
+                Hello, I'm <span class="text-gradient">Vignesh</span>
+            </h1>
+
+            <h2 class="hero-subtitle">
+                I build <span class="typing-text" data-words='["Full-Stack Django Applications", "JavaScript Web Systems", "Relational SQL Databases", "Embedded & IoT Solutions"]'></span><span class="cursor">|</span>
+            </h2>
+
+            <p class="hero-description">
+                Electronics & Communication Engineering student dedicated to crafting clean, high-performance web applications, interactive JavaScript frontends, structured SQL databases, and connected IoT hardware.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-folder-open"></i> Featured Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
+                <a href="https://github.com/{{ github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" title="GitHub Profile">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Core Open Source Projects</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">ECE</span>
+                    <span class="stat-label">Engineering Discipline</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Commitment to Quality</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-graphics">
+            <div class="code-terminal">
+                <div class="terminal-bar">
+                    <div class="terminal-buttons">
+                        <span class="t-btn t-close"></span>
+                        <span class="t-btn t-min"></span>
+                        <span class="t-btn t-max"></span>
+                    </div>
+                    <div class="terminal-title">vignesh@developer-environment: ~</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat developer_profile.py</span></div>
+                    <pre><code><span class="py-keyword">class</span> <span class="py-class">VigneshProfile</span>:
+    <span class="py-var">role</span> = <span class="py-str">"Full-Stack Developer & ECE Engineer"</span>
+    <span class="py-var">email</span> = <span class="py-str">"{{ contact_email }}"</span>
+    <span class="py-var">github</span> = <span class="py-str">"github.com/{{ github_username }}"</span>
+    
+    <span class="py-var">featured_repositories</span> = [
+        <span class="py-str">"javascript-counter-app"</span>,
+        <span class="py-str">"Quiz-App"</span>,
+        <span class="py-str">"Staff-Management-SQL"</span>
+    ]
+    
+    <span class="py-keyword">def</span> <span class="py-func">mission</span>(self):
+        <span class="py-keyword">return</span> <span class="py-str">"Deliver scalable software & smart hardware solutions"</span></code></pre>
+                    <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd t-blink">python manage.py runserver</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about section" id="about">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-user-astronaut"></i> Background</span>
+            <h2 class="section-title">About Me</h2>
+            <p class="section-desc">Blended expertise in hardware fundamentals and modern software craftsmanship</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card main-about">
+                <div class="about-badge-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="about-card-title">Electronics & Communication Engineer</h3>
+                <p class="about-text">
+                    I am a final-year Electronics and Communication Engineering undergraduate who discovered a deep passion for building full-stack software solutions. My engineering foundation gives me a deep intuition for computer architecture, low-level efficiency, and structured problem solving.
+                </p>
+                <p class="about-text">
+                    Whether architecting relational SQL database systems, building responsive interactive JavaScript frontend experiences, or connecting real-time telemetry from microcontrollers to web backends, I thrive on turning complex problems into elegant, maintainable code.
+                </p>
+                <div class="about-footer-info">
+                    <div class="info-pill"><i class="fas fa-envelope"></i> {{ contact_email }}</div>
+                    <div class="info-pill"><i class="fab fa-github"></i> github.com/{{ github_username }}</div>
+                    <div class="info-pill"><i class="fas fa-location-dot"></i> India</div>
+                </div>
+            </div>
+
+            <div class="about-cards-side">
+                <div class="side-card">
+                    <div class="side-icon"><i class="fas fa-code"></i></div>
+                    <div>
+                        <h4>Frontend & JavaScript</h4>
+                        <p>Interactive DOM applications, responsive UI/UX, real-time client state management.</p>
+                    </div>
+                </div>
+
+                <div class="side-card">
+                    <div class="side-icon"><i class="fas fa-database"></i></div>
+                    <div>
+                        <h4>Database & SQL Systems</h4>
+                        <p>Relational schema design, optimized queries, employee/staff administration modules.</p>
+                    </div>
+                </div>
+
+                <div class="side-card">
+                    <div class="side-icon"><i class="fas fa-server"></i></div>
+                    <div>
+                        <h4>Full-Stack Backend</h4>
+                        <p>Django framework, RESTful APIs, SQLite/PostgreSQL, authentication & mailer integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills section" id="skills">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-layer-group"></i> Capabilities</span>
+            <h2 class="section-title">Technical Expertise</h2>
+            <p class="section-desc">Technologies, languages, and frameworks in my development workflow</p>
+        </div>
+
+        <div class="skills-grid">
+            <!-- Web & Frontend Skills -->
+            <div class="skill-category-card">
+                <div class="skill-category-header">
+                    <div class="cat-icon cat-frontend"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Web & Frontend</h3>
+                </div>
+                <div class="skill-tags">
+                    <div class="skill-pill"><i class="fab fa-js"></i> <span>JavaScript (ES6+)</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fab fa-html5"></i> <span>HTML5 / Semantic UI</span> <span class="level-badge">Advanced</span></div>
+                    <div class="skill-pill"><i class="fab fa-css3-alt"></i> <span>CSS3 & Modern Layouts</span> <span class="level-badge">Advanced</span></div>
+                    <div class="skill-pill"><i class="fas fa-cubes"></i> <span>DOM Manipulation</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fas fa-mobile-screen"></i> <span>Responsive Web Design</span> <span class="level-badge">Advanced</span></div>
+                </div>
+            </div>
+
+            <!-- Database & Backend Skills -->
+            <div class="skill-category-card">
+                <div class="skill-category-header">
+                    <div class="cat-icon cat-backend"><i class="fas fa-database"></i></div>
+                    <h3>Database & Backend</h3>
+                </div>
+                <div class="skill-tags">
+                    <div class="skill-pill"><i class="fas fa-database"></i> <span>SQL & Relational DBs</span> <span class="level-badge">Advanced</span></div>
+                    <div class="skill-pill"><i class="fab fa-python"></i> <span>Python 3</span> <span class="level-badge">Advanced</span></div>
+                    <div class="skill-pill"><i class="fas fa-server"></i> <span>Django Framework</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fas fa-table"></i> <span>Schema Design & CRUD</span> <span class="level-badge">Advanced</span></div>
+                    <div class="skill-pill"><i class="fas fa-network-wired"></i> <span>RESTful APIs</span> <span class="level-badge">Proficient</span></div>
+                </div>
+            </div>
+
+            <!-- ECE & Hardware -->
+            <div class="skill-category-card">
+                <div class="skill-category-header">
+                    <div class="cat-icon cat-hardware"><i class="fas fa-microchip"></i></div>
+                    <h3>ECE & Embedded Systems</h3>
+                </div>
+                <div class="skill-tags">
+                    <div class="skill-pill"><i class="fas fa-microchip"></i> <span>ESP32 & Arduino</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fas fa-code"></i> <span>Embedded C / C++</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fas fa-satellite-dish"></i> <span>IoT & Protocols</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fas fa-wave-square"></i> <span>Signal Processing</span> <span class="level-badge">Intermediate</span></div>
+                    <div class="skill-pill"><i class="fas fa-project-diagram"></i> <span>Circuit Design & Simulation</span> <span class="level-badge">Intermediate</span></div>
+                </div>
+            </div>
+
+            <!-- Tools & Workflow -->
+            <div class="skill-category-card">
+                <div class="skill-category-header">
+                    <div class="cat-icon cat-tools"><i class="fas fa-toolbox"></i></div>
+                    <h3>Tools & Workflow</h3>
+                </div>
+                <div class="skill-tags">
+                    <div class="skill-pill"><i class="fab fa-git-alt"></i> <span>Git Version Control</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fab fa-github"></i> <span>GitHub Workflows</span> <span class="level-badge">Proficient</span></div>
+                    <div class="skill-pill"><i class="fas fa-terminal"></i> <span>VS Code & CLI Tools</span> <span class="level-badge">Advanced</span></div>
+                    <div class="skill-pill"><i class="fas fa-flask"></i> <span>Postman API Testing</span> <span class="level-badge">Proficient</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects section" id="projects">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-diagram-project"></i> Portfolio Showcase</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-desc">Key open-source projects built and maintained on GitHub</p>
+        </div>
+
+        <!-- Filter Navigation -->
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">All Projects (3)</button>
+            <button class="filter-btn" data-filter="web">Web & JS</button>
+            <button class="filter-btn" data-filter="database">Database & SQL</button>
+        </div>
+
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card" data-category="{{ project.category }}">
+                <div class="project-card-top">
+                    <div class="project-folder-icon">
+                        <i class="far fa-folder-open"></i>
+                    </div>
+                    <div class="project-ext-links">
+                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="icon-link" title="View Source on GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% if project.live_demo_link %}
+                        <a href="{{ project.live_demo_link }}" target="_blank" rel="noopener noreferrer" class="icon-link" title="Live Preview">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <span class="category-badge badge-{{ project.category }}">{{ project.get_category_display }}</span>
+                    <h3 class="project-title">
+                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+                    </h3>
+                    <p class="project-desc">{{ project.description }}</p>
+                </div>
+
+                <div class="project-footer">
+                    <div class="tech-tags">
+                        {% for tech in project.get_tech_list %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="project-action-btn">
+                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline">
+                            <i class="fab fa-github"></i> Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default rendering if not seeded yet -->
+            <div class="project-card" data-category="web">
+                <div class="project-card-top">
+                    <div class="project-folder-icon"><i class="far fa-folder-open"></i></div>
+                    <div class="project-ext-links">
+                        <a href="https://github.com/vigneshvicky24092005-ai/javascript-counter-app" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <span class="category-badge badge-web">Frontend & JavaScript</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/vigneshvicky24092005-ai/javascript-counter-app" target="_blank">JavaScript Counter App</a>
+                    </h3>
+                    <p class="project-desc">A modern, interactive JavaScript counter application with smooth real-time state manipulation, customizable increment steps, state persistence, and responsive glassmorphism UI.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">DOM</span>
+                    </div>
+                    <a href="https://github.com/vigneshvicky24092005-ai/javascript-counter-app" target="_blank" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> Repository</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web">
+                <div class="project-card-top">
+                    <div class="project-folder-icon"><i class="far fa-folder-open"></i></div>
+                    <div class="project-ext-links">
+                        <a href="https://github.com/vigneshvicky24092005-ai/Quiz-App" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <span class="category-badge badge-web">Web Applications</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/vigneshvicky24092005-ai/Quiz-App" target="_blank">Interactive Quiz Application</a>
+                    </h3>
+                    <p class="project-desc">A feature-rich quiz web app supporting timed challenges, dynamic score evaluation, question category selection, instant feedback review, and progress metrics.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">JSON</span>
+                    </div>
+                    <a href="https://github.com/vigneshvicky24092005-ai/Quiz-App" target="_blank" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> Repository</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="database">
+                <div class="project-card-top">
+                    <div class="project-folder-icon"><i class="far fa-folder-open"></i></div>
+                    <div class="project-ext-links">
+                        <a href="https://github.com/vigneshvicky24092005-ai/Staff-Management-SQL" target="_blank" class="icon-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <span class="category-badge badge-database">Database & SQL Systems</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/vigneshvicky24092005-ai/Staff-Management-SQL" target="_blank">Staff Management SQL System</a>
+                    </h3>
+                    <p class="project-desc">Enterprise relational database solution for staff record administration, role hierarchies, payroll tracking, performance metrics, and complex SQL data analytics.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="tech-tags">
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Database Design</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">CRUD</span>
+                    </div>
+                    <a href="https://github.com/vigneshvicky24092005-ai/Staff-Management-SQL" target="_blank" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> Repository</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="github-cta-banner">
+            <div class="cta-content">
+                <h3>Explore All Repositories on GitHub</h3>
+                <p>Check out my open-source code repositories, commit activity, and contributions on GitHub.</p>
+            </div>
+            <a href="https://github.com/{{ github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-glow">
+                <i class="fab fa-github"></i> Visit @{{ github_username }}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Education & Certifications Section -->
+<section class="education section" id="education">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-award"></i> Journey</span>
+            <h2 class="section-title">Education & Credentials</h2>
+            <p class="section-desc">Academic background, engineering foundation, and verified certifications</p>
+        </div>
+
+        <div class="edu-grid">
+            <!-- Timeline Column -->
+            <div class="edu-column">
+                <h3 class="col-title"><i class="fas fa-graduation-cap"></i> Academic Pathway</h3>
+                <div class="timeline">
+                    {% for edu in educations %}
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-card">
+                            <span class="timeline-period">{{ edu.duration }}</span>
+                            <h4 class="timeline-title">{{ edu.degree }}</h4>
+                            <p class="timeline-institution">{{ edu.institution }}</p>
+                            {% if edu.grade %}
+                            <div class="timeline-grade-badge"><i class="fas fa-star"></i> {{ edu.grade }}</div>
+                            {% endif %}
+                            {% if edu.description %}
+                            <p class="timeline-text">{{ edu.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-card">
+                            <span class="timeline-period">2021 - 2025</span>
+                            <h4 class="timeline-title">B.E. in Electronics and Communication Engineering</h4>
+                            <p class="timeline-institution">Engineering College / University</p>
+                            <div class="timeline-grade-badge"><i class="fas fa-star"></i> CGPA: 8.75 / 10.0 (Final Year)</div>
+                            <p class="timeline-text">Specialized in embedded architectures, hardware-software integration, digital communication, and full-stack software development.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-card">
+                            <span class="timeline-period">2019 - 2021</span>
+                            <h4 class="timeline-title">Higher Secondary Certificate (12th Grade)</h4>
+                            <p class="timeline-institution">State Board Higher Secondary School</p>
+                            <div class="timeline-grade-badge"><i class="fas fa-star"></i> Score: 92.4%</div>
+                            <p class="timeline-text">Majored in Physics, Chemistry, Mathematics, and Computer Science with academic excellence.</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Certifications Column -->
+            <div class="edu-column">
+                <h3 class="col-title"><i class="fas fa-certificate"></i> Certifications & Training</h3>
+                <div class="certifications-list">
+                    {% for cert in certifications %}
+                    <div class="cert-card">
+                        <div class="cert-icon-box">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="cert-info">
+                            <h4 class="cert-name">{{ cert.title }}</h4>
+                            <p class="cert-issuer"><i class="far fa-building"></i> {{ cert.issuing_organization }} &bull; {{ cert.issue_date }}</p>
+                            {% if cert.credential_url %}
+                            <a href="{{ cert.credential_url }}" target="_blank" rel="noopener noreferrer" class="cert-verify-link">
+                                Verify Certificate <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="cert-card">
+                        <div class="cert-icon-box"><i class="fas fa-award"></i></div>
+                        <div class="cert-info">
+                            <h4 class="cert-name">Full-Stack Web Development with Python & Django</h4>
+                            <p class="cert-issuer"><i class="far fa-building"></i> Industry Specialized Course &bull; 2024</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon-box"><i class="fas fa-award"></i></div>
+                        <div class="cert-info">
+                            <h4 class="cert-name">Relational Database Design & SQL Query Optimization</h4>
+                            <p class="cert-issuer"><i class="far fa-building"></i> Database Certification &bull; 2024</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon-box"><i class="fas fa-award"></i></div>
+                        <div class="cert-info">
+                            <h4 class="cert-name">Modern JavaScript & Frontend Development</h4>
+                            <p class="cert-issuer"><i class="far fa-building"></i> Certified Developer Track &bull; 2023</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact section" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag"><i class="fas fa-paper-plane"></i> Get in Touch</span>
+            <h2 class="section-title">Contact & Inquiries</h2>
+            <p class="section-desc">Have a question or looking to collaborate? Send a message directly to my email</p>
+        </div>
+
+        <div class="contact-layout">
+            <!-- Left Info Panel -->
+            <div class="contact-details-card">
+                <h3 class="contact-subheading">Let's Discuss Your Next Project</h3>
+                <p class="contact-intro">
+                    I am actively seeking engineering and full-stack software development opportunities. Whether you have a project idea, a role to discuss, or just want to connect, feel free to reach out.
+                </p>
+
+                <div class="contact-methods">
+                    <a href="mailto:{{ contact_email }}" class="contact-method-item">
+                        <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <span class="method-label">Direct Email</span>
+                            <span class="method-val">{{ contact_email }}</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/{{ github_username }}" target="_blank" rel="noopener noreferrer" class="contact-method-item">
+                        <div class="method-icon"><i class="fab fa-github"></i></div>
+                        <div>
+                            <span class="method-label">GitHub</span>
+                            <span class="method-val">github.com/{{ github_username }}</span>
+                        </div>
+                    </a>
+
+                    <div class="contact-method-item">
+                        <div class="method-icon"><i class="fas fa-location-dot"></i></div>
+                        <div>
+                            <span class="method-label">Location</span>
+                            <span class="method-val">India (Open to Relocation & Remote)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="email-notice-card">
+                    <i class="fas fa-circle-info"></i>
+                    <p>
+                        Messages submitted through this form are delivered straight to <strong>{{ contact_email }}</strong> and recorded in the database.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Form Panel -->
+            <div class="contact-form-panel">
+                <form action="{% url 'core:index' %}#contact" method="POST" class="contact-form" id="contact-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}"><i class="fas fa-user"></i> Full Name <span class="required">*</span></label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}"><i class="fas fa-envelope"></i> Your Email <span class="required">*</span></label>
+                            {{ form.email }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.subject.id_for_label }}"><i class="fas fa-heading"></i> Subject <span class="required">*</span></label>
+                        {{ form.subject }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}"><i class="fas fa-message"></i> Message <span class="required">*</span></label>
+                        {{ form.message }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message to Vignesh
+                    </button>
+
+                    <div class="form-divider" style="display: flex; align-items: center; text-align: center; margin: 1.25rem 0; color: var(--text-dim); font-size: 0.85rem;">
+                        <span style="flex: 1; border-bottom: 1px solid var(--border-color);"></span>
+                        <span style="padding: 0 0.75rem;">OR COMPOSE DIRECTLY</span>
+                        <span style="flex: 1; border-bottom: 1px solid var(--border-color);"></span>
+                    </div>
+
+                    <div class="direct-email-actions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                        <a href="mailto:{{ contact_email }}?subject=Inquiry%20via%20Portfolio" class="btn btn-secondary btn-sm" style="text-align: center;">
+                            <i class="fas fa-envelope"></i> Default Mail App
+                        </a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ contact_email }}&su=Portfolio%20Inquiry" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="text-align: center;">
+                            <i class="fab fa-google"></i> Open in Gmail
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
