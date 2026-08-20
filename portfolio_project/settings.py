@@ -9,9 +9,27 @@ load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-vignesh-portfolio-fullstack-2026-secret')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost,testserver').split(',') if host.strip()]
-if DEBUG and 'testserver' not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append('testserver')
+
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv(
+        'DJANGO_ALLOWED_HOSTS',
+        '*,127.0.0.1,localhost,testserver,.vercel.app,.now.sh'
+    ).split(',')
+    if host.strip()
+]
+for host in ['.vercel.app', '.now.sh', '127.0.0.1', 'localhost', 'testserver']:
+    if host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(host)
+
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        'CSRF_TRUSTED_ORIGINS',
+        'https://*.vercel.app,https://*.now.sh,http://127.0.0.1,http://localhost'
+    ).split(',')
+    if origin.strip()
+]
 
 
 INSTALLED_APPS = [

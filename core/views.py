@@ -61,7 +61,10 @@ def index(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            contact_instance = form.save()
+            try:
+                contact_instance = form.save()
+            except Exception:
+                contact_instance = form.save(commit=False)
             
             subject = f"Portfolio Contact: {contact_instance.subject} (from {contact_instance.name})"
             body = (
