@@ -74,12 +74,34 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 ASGI_APPLICATION = 'portfolio_project.asgi.application'
 
+import shutil
+
+IS_VERCEL = bool(os.getenv('VERCEL') or 'VERCEL' in os.environ or 'AWS_LAMBDA_FUNCTION_NAME' in os.environ)
+
+if IS_VERCEL:
+    # On Vercel serverless environment, the root directory (/var/task) is read-only.
+    # Copy the pre-seeded SQLite database to the writable /tmp directory.
+    TMP_DB = Path('/tmp') / 'db.sqlite3'
+    ORIGINAL_DB = BASE_DIR / 'db.sqlite3'
+    if ORIGINAL_DB.exists():
+        try:
+            if not TMP_DB.exists() or TMP_DB.stat().st_size == 0:
+                shutil.copy2(ORIGINAL_DB, TMP_DB)
+        except Exception:
+            pass
+    DB_PATH = TMP_DB if TMP_DB.exists() else ORIGINAL_DB
+else:
+    DB_PATH = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DB_PATH,
     }
 }
+
+# Use signed cookies for sessions to maintain session state across serverless lambda instances
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
